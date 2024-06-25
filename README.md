@@ -1,25 +1,40 @@
 # ML-Pathfinding-project-ECS-170
 School project for ML
 
-
 # A* Pathfinding Algorithm Implementations
 
-This project provides multiple implementations of the A* pathfinding algorithm with different heuristics and strategies. These implementations are designed to explore various approaches to optimize pathfinding in grid-based maps. Each class extends the `AIModule` and overrides the `heuristic` and `createPath` methods to provide unique behaviors.
+This project is a school assignment designed to highlight different implementations of the A* pathfinding algorithm. It explores various heuristics and strategies to optimize pathfinding in grid-based maps.
 
 ## Implementations
 
-### 1. `AStarExp`
+Each implementation extends the `AIModule` and provides unique behaviors by overriding the `heuristic` and `createPath` methods. These variations demonstrate how different approaches can impact the efficiency and effectiveness of the pathfinding process.
 
-The `AStarExp` class uses an exponential heuristic based on the height difference between the current node and the goal node. This heuristic aims to prioritize paths with less elevation change.
+## How to Use
 
-#### Heuristic
-```python
-def heuristic(self, current, goal, map_):
-    current_height = map_.getTile(current.x, current.y)
-    goal_height = map_.getTile(goal.x, goal.y)
-    y = goal_height - current_height
-    x = max(abs(goal.x - current.x), abs(goal.y - current.y))
-    if y < x:
-        return x * math.exp(y / x)
-    else:
-        return y * math.exp(1 + (x - y))
+1. **Clone the Repository**:
+    ```sh
+    git clone https://github.com/your-repo/astar-pathfinding.git
+    cd astar-pathfinding
+    ```
+
+2. **Install Dependencies**:
+    Ensure you have Python installed. You may need to install additional libraries, which can be done via pip:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+3. **Run the Algorithm**:
+    Example script to run an implementation:
+    ```python
+    from astar import AStarExp
+    from map import Map  # Assuming you have a Map class implemented
+
+    map_ = Map('path/to/mapfile')
+    start = map_.getStart()
+    goal = map_.getGoal()
+
+    astar = AStarExp()
+    path = astar.createPath(map_, start, goal)
+
+    print("Path found:", path)
+    ```
